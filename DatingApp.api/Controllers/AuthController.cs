@@ -66,7 +66,7 @@ namespace DatingApp.api.Controllers
 
             var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
 
-            var toeknDescriptor = new SecurityTokenDescriptor
+            var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
                 Expires = DateTime.Now.AddDays(1),
@@ -75,10 +75,10 @@ namespace DatingApp.api.Controllers
             };
 
             var tokenHandler = new  JwtSecurityTokenHandler();
-            var token = tokenHandler.CreateToken(toeknDescriptor);
+            var token = tokenHandler.CreateToken(tokenDescriptor);
 
             return Ok(new {
-                    toekn = tokenHandler.WriteToken(token)
+                    token = tokenHandler.WriteToken(token)
             });
     }
 }
