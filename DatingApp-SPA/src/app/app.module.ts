@@ -9,7 +9,6 @@ import {BsDropdownModule, TabsModule} from 'ngx-bootstrap';
 import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
 import {JwtModule } from '@auth0/angular-jwt';
 
-
 import { AuthService } from './_services/auth.service';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';

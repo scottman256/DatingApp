@@ -46,6 +46,8 @@ namespace DatingApp.api
             services.AddAutoMapper(typeof(DatingRepository));
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IDatingRepository, DatingRepository>();
+             services.AddScoped<LogUserActivity>();
+
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options => {options.TokenValidationParameters = new TokenValidationParameters
             {
@@ -55,7 +57,6 @@ namespace DatingApp.api
                 ValidateIssuer = false,
                 ValidateAudience = false
             };
-            
             });
         }
 
