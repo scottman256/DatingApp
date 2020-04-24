@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using DatingApp.api.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace DatingApp.api.Data
 {
@@ -33,6 +34,11 @@ namespace DatingApp.api.Data
         {
             var photo = await _context.Photos.FirstOrDefaultAsync(p => p.Id == id );
             return photo;
+        }
+
+        public async Task<Photo> GetMainPhotoForUser(int userId)
+        {
+            return await _context.Photos.Where(u => u.UserId == userId).FirstOrDefaultAsync(p => p.IsMain);
         }
 
         public async Task<IEnumerable<User>> GetUsers()
