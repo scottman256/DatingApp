@@ -5,7 +5,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {BsDropdownModule, TabsModule, PaginationModule, ButtonsModule} from 'ngx-bootstrap';
+import {BsDropdownModule, TabsModule, PaginationModule} from 'ngx-bootstrap';
 import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
 import {JwtModule } from '@auth0/angular-jwt';
 
@@ -32,6 +32,8 @@ import { MemberEditResolver } from './_resolvers/member-edit.resolver';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 import { PhotoEditorComponent } from './photo-editor/photo-editor.component';
 import { FileUploadModule } from 'ng2-file-upload';
+import { ListsResolver } from './_resolvers/lists.resolver';
+
 
 
 
@@ -73,7 +75,6 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       TabsModule.forRoot(),
       NgxGalleryModule,
       FileUploadModule,
-      ButtonsModule.forRoot(),
       PaginationModule.forRoot(),
       RouterModule.forRoot(appRoutes),
       JwtModule.forRoot({
@@ -93,6 +94,7 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       MemberDetailResolver,
       MemberListResolver,
       MemberEditResolver,
+      ListsResolver,
       PreventUnsavedChanges
        // { provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig }
    ],
