@@ -45,6 +45,18 @@ pagination: Pagination;
     this.loadUsers();
   }
 
+  sortByLastActive()
+  {
+    this.userParams.orderBy = 'lastActive';
+    this.loadUsers();
+  }
+
+  sortByCreated()
+  {
+    this.userParams.orderBy = 'created';
+    this.loadUsers();
+  }
+
   loadUsers() {
     this.userService.getUsers(this.pagination.currentPage, this.pagination.itemsPerPage, this.userParams)
     .subscribe((res: PaginatedResult<User[]>) => {
