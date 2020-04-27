@@ -5,12 +5,14 @@
 <div class="container mt-3">
 
 <div class="row">
+  <form>
   <div class="btn-group">
     <button class="btn btn-primary" name="likesMe" [(ngModel)]="likesParam" 
-    (click)="likesMe($event)">Members who like me</button>
+    (click)="likesMe()">Members who like me</button>
     <button class="btn btn-primary" name="Ilike" [(ngModel)]="likesParam" 
-     (click)="Ilike($event)">Members who I like</button>
+     (click)="Ilike()">Members who I like</button>
   </div>
+</form>
 </div>
 
 <br>

@@ -33,17 +33,16 @@ export class ListsComponent implements OnInit {
     console.log(this.pagination.currentPage);
   }
 
-  Ilike(event: any)
+  Ilike()
   {
-    this.pagination.currentPage = event.page;
+
     this.likesParam = 'Likees';
     console.log('likee');
     this.loadUsers();
   }
 
-  likesMe(event: any)
+  likesMe()
   {
-    this.pagination.currentPage = event.page;
     this.likesParam = 'Likers';
     console.log('liker');
     this.loadUsers();
