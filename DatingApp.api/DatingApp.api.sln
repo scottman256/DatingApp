@@ -26,6 +26,8 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "DatingApp-SPA", "..\DatingA
 		SlnRelativePath = "..\DatingApp-SPA\"
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatingApp.api.Tests", "..\DatingApp.api.Tests\DatingApp.api.Tests.csproj", "{873DEBAE-556A-4846-9B6A-18E73599A31A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,6 +42,10 @@ Global
 		{AF870426-1774-4B6F-90DA-21B61F651FED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF870426-1774-4B6F-90DA-21B61F651FED}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{AF870426-1774-4B6F-90DA-21B61F651FED}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{873DEBAE-556A-4846-9B6A-18E73599A31A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{873DEBAE-556A-4846-9B6A-18E73599A31A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{873DEBAE-556A-4846-9B6A-18E73599A31A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{873DEBAE-556A-4846-9B6A-18E73599A31A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

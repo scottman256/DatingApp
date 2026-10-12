@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-value',
+  standalone: false,
   templateUrl: './value.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./value.component.css']
 })
 export class ValueComponent implements OnInit {
