@@ -23,8 +23,9 @@ Use two terminals: one for the API, one for the Angular app.
 
 ```bash
 cd DatingApp.api
-dotnet tool restore          # first time only: installs the EF Core command-line tool
-dotnet ef database update    # first time only: creates the datingapp.db SQLite database
+dotnet tool restore                  # first time only: installs the EF Core command-line tool
+dotnet build DatingApp.api.csproj    # first time only: downloads packages and builds the API
+dotnet ef database update            # first time only: creates the datingapp.db SQLite database
 dotnet run
 ```
 
