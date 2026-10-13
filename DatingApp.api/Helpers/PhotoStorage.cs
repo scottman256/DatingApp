@@ -92,7 +92,8 @@ namespace DatingApp.api.Helpers
                 case SKEncodedOrigin.RightBottom: canvas.Translate(0, result.Height); canvas.RotateDegrees(-90); canvas.Scale(1, -1, 0, source.Height / 2f); break;
                 case SKEncodedOrigin.LeftBottom: canvas.Translate(0, result.Height); canvas.RotateDegrees(-90); break;
             }
-            canvas.DrawBitmap(source, 0, 0);
+            using var image = SKImage.FromBitmap(source);
+            canvas.DrawImage(image, 0, 0, SKSamplingOptions.Default);
             return result;
         }
     }
