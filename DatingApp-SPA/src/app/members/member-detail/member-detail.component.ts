@@ -30,7 +30,8 @@ export class MemberDetailComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       // tslint:disable-next-line: no-string-literal
       const selectedTab = params['tab'];
-      this.memberTabs.tabs[selectedTab > 0 ? selectedTab : 0].active = true;
+      // ngx-bootstrap 20+ registers the tabs after ngOnInit, so select the tab once they exist
+      setTimeout(() => this.memberTabs.tabs[selectedTab > 0 ? selectedTab : 0].active = true);
     });
     this.galleryOptions = [
 {
