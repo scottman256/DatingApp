@@ -28,7 +28,7 @@ import { AuthGuard } from './_guards/auth.guard';
 import { AlertifyService } from './_services/alertify.service';
 import { MemberDetailResolver } from './_resolvers/member-detail.resolver';
 import { MemberListResolver } from './_resolvers/member-list.resolver';
-import { NgxGalleryModule} from '@kolkov/ngx-gallery';
+import { NgxGalleryModule} from 'ngx-gallery-15';
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
 import { MemberEditResolver } from './_resolvers/member-edit.resolver';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
@@ -81,7 +81,7 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       NgxGalleryModule,
       FileUploadModule,
       PaginationModule.forRoot(),
-      RouterModule.forRoot(appRoutes, { relativeLinkResolution: 'legacy' }),
+      RouterModule.forRoot(appRoutes, {}),
       JwtModule.forRoot({
          config: {
             tokenGetter,
