@@ -5,7 +5,9 @@ import {HttpClientModule} from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {BsDropdownModule, TabsModule, PaginationModule} from 'ngx-bootstrap';
+import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
+import {TabsModule} from 'ngx-bootstrap/tabs';
+import {PaginationModule} from 'ngx-bootstrap/pagination';
 import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
 import {JwtModule } from '@auth0/angular-jwt';
 
