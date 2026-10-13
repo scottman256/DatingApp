@@ -1,13 +1,13 @@
 import {Injectable} from '@angular/core';
 import {User} from '../_models/user';
-import { Router, Resolve, ActivatedRouteSnapshot } from '@angular/router';
+import { Router, ActivatedRouteSnapshot } from '@angular/router';
 import { AlertifyService } from '../_services/alertify.service';
 import { of, Observable } from 'rxjs';
 import { UserService } from '../_services/user.service';
 import { catchError } from 'rxjs/operators';
 
 @Injectable()
-export class MemberListResolver implements Resolve<User[]> {
+export class MemberListResolver  {
     pageNumber = 1;
     pageSize =  5;
 
