@@ -41,7 +41,7 @@ export class PhotoEditorComponent implements OnInit {
       autoUpload: false,
       maxFileSize: 10 * 1024 * 1024,
       disableMultipart: false, // 'DisableMultipart' must be 'true' for formatDataFunction to be called.
-      formatDataFunctionIsAsync: true,
+      formatDataFunctionIsAsync: false,
       formatDataFunction: async (item) => {
         return new Promise( (resolve, reject) => {
           resolve({
