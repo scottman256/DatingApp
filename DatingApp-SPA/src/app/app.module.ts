@@ -81,7 +81,7 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       NgxGalleryModule,
       FileUploadModule,
       PaginationModule.forRoot(),
-      RouterModule.forRoot(appRoutes),
+      RouterModule.forRoot(appRoutes, { relativeLinkResolution: 'legacy' }),
       JwtModule.forRoot({
          config: {
             tokenGetter,
