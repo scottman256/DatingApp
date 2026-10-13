@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, ChangeDetectionStrategy } from '@angular/core';
 import { AuthService } from '../_services/auth.service';
 import { AlertifyService } from '../_services/alertify.service';
 import { UntypedFormGroup, FormControl, Validators, UntypedFormBuilder } from '@angular/forms';
@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class RegisterComponent implements OnInit {

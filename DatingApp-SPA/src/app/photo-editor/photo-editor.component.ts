@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { Photo } from '../_models/photo';
 import { FileUploader } from 'ng2-file-upload';
 import { environment } from 'src/environments/environment';
@@ -10,6 +10,7 @@ import { AlertifyService } from '../_services/alertify.service';
   selector: 'app-photo-editor',
   templateUrl: './photo-editor.component.html',
   styleUrls: ['./photo-editor.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class PhotoEditorComponent implements OnInit {
