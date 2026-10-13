@@ -10,7 +10,8 @@ import { TabsetComponent } from 'ngx-bootstrap/tabs';
 @Component({
   selector: 'app-member-detail',
   templateUrl: './member-detail.component.html',
-  styleUrls: ['./member-detail.component.css']
+  styleUrls: ['./member-detail.component.css'],
+  standalone: false
 })
 export class MemberDetailComponent implements OnInit {
   @ViewChild('memberTabs', {static: true}) memberTabs: TabsetComponent;

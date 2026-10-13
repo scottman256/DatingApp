@@ -7,7 +7,8 @@ import { AlertifyService } from 'src/app/_services/alertify.service';
 @Component({
   selector: 'app-member-card',
   templateUrl: './member-card.component.html',
-  styleUrls: ['./member-card.component.css']
+  styleUrls: ['./member-card.component.css'],
+  standalone: false
 })
 export class MemberCardComponent implements OnInit {
 @Input() user: User;

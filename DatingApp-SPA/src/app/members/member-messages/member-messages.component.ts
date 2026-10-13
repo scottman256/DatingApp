@@ -8,7 +8,8 @@ import { tap } from 'rxjs/operators';
 @Component({
   selector: 'app-member-messages',
   templateUrl: './member-messages.component.html',
-  styleUrls: ['./member-messages.component.css']
+  styleUrls: ['./member-messages.component.css'],
+  standalone: false
 })
 export class MemberMessagesComponent implements OnInit {
   @Input() recipientId: number;
