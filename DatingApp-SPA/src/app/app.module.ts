@@ -75,12 +75,12 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       HttpClientModule,
       FormsModule,
       ReactiveFormsModule,
-      BsDropdownModule.forRoot(),
-      BsDatepickerModule.forRoot(),
-      TabsModule.forRoot(),
+      BsDropdownModule,
+      BsDatepickerModule,
+      TabsModule,
       NgxGalleryModule,
       FileUploadModule,
-      PaginationModule.forRoot(),
+      PaginationModule,
       RouterModule.forRoot(appRoutes, {}),
       JwtModule.forRoot({
          config: {
