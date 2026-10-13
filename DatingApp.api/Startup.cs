@@ -23,6 +23,7 @@ using System.Net;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json.Serialization;
 using AutoMapper;
+using Microsoft.Extensions.FileProviders;
 
 namespace DatingApp.api
 {
@@ -57,7 +58,7 @@ namespace DatingApp.api
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.AddCors();
-            services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
+            services.AddSingleton<PhotoStorage>();
             services.AddAutoMapper(cfg => { }, typeof(DatingRepository));
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IDatingRepository, DatingRepository>();
@@ -110,6 +111,10 @@ namespace DatingApp.api
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseDefaultFiles();
             app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions {
+                FileProvider = new PhysicalFileProvider(app.ApplicationServices.GetRequiredService<PhotoStorage>().Folder),
+                RequestPath = "/photos"
+            });
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapFallbackToController("Index", "Fallback");
