@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import {BehaviorSubject } from 'rxjs';
 import {map} from 'rxjs/operators';
 import {JwtHelperService} from '@auth0/angular-jwt';
-import * as jwt_decode from 'jwt-decode';
+import jwt_decode from 'jwt-decode';
 import {environment} from '../../environments/environment';
 import { User } from '../_models/user';
 

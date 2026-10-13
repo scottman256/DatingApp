@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import { AuthService} from './_services/auth.service';
-import * as jwt_decode from 'jwt-decode';
+import jwt_decode from 'jwt-decode';
 import { User } from './_models/user';
 
 @Component({
