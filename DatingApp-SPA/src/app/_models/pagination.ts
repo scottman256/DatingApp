@@ -1,4 +1,3 @@
-import { ɵangular_packages_animations_browser_browser_a } from '@angular/animations/browser';
 
 export interface Pagination {
 currentPage: number;

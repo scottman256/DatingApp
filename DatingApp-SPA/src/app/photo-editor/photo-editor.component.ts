@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { Photo } from '../_models/photo';
 import { FileUploader } from 'ng2-file-upload';
 import { environment } from 'src/environments/environment';
@@ -9,7 +9,9 @@ import { AlertifyService } from '../_services/alertify.service';
 @Component({
   selector: 'app-photo-editor',
   templateUrl: './photo-editor.component.html',
-  styleUrls: ['./photo-editor.component.css']
+  styleUrls: ['./photo-editor.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false
 })
 export class PhotoEditorComponent implements OnInit {
   @Input() photos: Photo[];
@@ -40,8 +42,8 @@ export class PhotoEditorComponent implements OnInit {
       removeAfterUpload: true,
       autoUpload: false,
       maxFileSize: 10 * 1024 * 1024,
-      disableMultipart: true, // 'DisableMultipart' must be 'true' for formatDataFunction to be called.
-      formatDataFunctionIsAsync: true,
+      disableMultipart: false, // 'DisableMultipart' must be 'true' for formatDataFunction to be called.
+      formatDataFunctionIsAsync: false,
       formatDataFunction: async (item) => {
         return new Promise( (resolve, reject) => {
           resolve({
@@ -55,9 +57,10 @@ export class PhotoEditorComponent implements OnInit {
   });
     console.log(localStorage.getItem('token'));
     console.log(this.baseUrl + 'users/' + this.authService.decodedToken.nameid + '/photos');
+    console.log('lets win!');
     this.uploader.response.subscribe( res => this.response = res );
     this.uploader.onAfterAddingFile = (file) => {file.withCredentials = false; };
-    this.response = '';
+    //this.response = '';
 
     this.uploader.onSuccessItem = (item, response, status, headers) => {
     if (response) {
@@ -69,6 +72,7 @@ export class PhotoEditorComponent implements OnInit {
         description: res.description,
         isMain: res.isMain
       };
+      console.log('success!');
       this.photos.push(photo);
       if (photo.isMain){
         this.authService.changeMemberPhoto(photo.url);

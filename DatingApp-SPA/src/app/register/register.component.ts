@@ -1,8 +1,8 @@
-import { Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, ChangeDetectionStrategy } from '@angular/core';
 import { AuthService } from '../_services/auth.service';
 import { AlertifyService } from '../_services/alertify.service';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { BsDatepickerConfig } from 'ngx-bootstrap';
+import { UntypedFormGroup, FormControl, Validators, UntypedFormBuilder } from '@angular/forms';
+import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { User } from '../_models/user';
 import { Router } from '@angular/router';
 
@@ -10,16 +10,18 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false
 })
 export class RegisterComponent implements OnInit {
   @Output() cancelRegister = new  EventEmitter();
  user: User;
-registerForm: FormGroup;
+registerForm: UntypedFormGroup;
 bsConfig: Partial<BsDatepickerConfig>;
 
   constructor(private authService: AuthService, private router: Router,
-              private alertify: AlertifyService, private fb: FormBuilder) { }
+              private alertify: AlertifyService, private fb: UntypedFormBuilder) { }
 
   ngOnInit() {
     this.bsConfig = {
@@ -43,7 +45,7 @@ this.registerForm = this.fb.group({
 
 
 
-passwordMatchValidator(g: FormGroup){
+passwordMatchValidator(g: UntypedFormGroup){
   return g.get('password').value === g.get('confirmPassword').value ? null : {'mismatch': true};
 }
 

@@ -1,16 +1,18 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { User } from 'src/app/_models/user';
 import { UserService } from 'src/app/_services/user.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { ActivatedRoute } from '@angular/router';
-import { NgxGalleryAnimation, NgxGalleryOptions, NgxGalleryImage } from '@kolkov/ngx-gallery';
-import { TabsetComponent } from 'ngx-bootstrap';
+import { NgxGalleryAnimation, NgxGalleryOptions, NgxGalleryImage } from 'ngx-gallery-15';
+import { TabsetComponent } from 'ngx-bootstrap/tabs';
 // import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery';
 
 @Component({
   selector: 'app-member-detail',
   templateUrl: './member-detail.component.html',
-  styleUrls: ['./member-detail.component.css']
+  styleUrls: ['./member-detail.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false
 })
 export class MemberDetailComponent implements OnInit {
   @ViewChild('memberTabs', {static: true}) memberTabs: TabsetComponent;
@@ -29,7 +31,8 @@ export class MemberDetailComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       // tslint:disable-next-line: no-string-literal
       const selectedTab = params['tab'];
-      this.memberTabs.tabs[selectedTab > 0 ? selectedTab : 0].active = true;
+      // ngx-bootstrap 20+ registers the tabs after ngOnInit, so select the tab once they exist
+      setTimeout(() => this.memberTabs.tabs[selectedTab > 0 ? selectedTab : 0].active = true);
     });
     this.galleryOptions = [
 {
