@@ -3,11 +3,8 @@ using DatingApp.api.Helpers;
 using DatingApp.api.Dtos;
 using DatingApp.api.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
-using CloudinaryDotNet;
-using CloudinaryDotNet.Actions;
 
 
 using System.Threading.Tasks;
@@ -24,26 +21,14 @@ namespace DatingApp.api.Controllers
             private readonly IDatingRepository _repo;
             private readonly IMapper _mapper;
 
-            private Cloudinary _cloudinary;
+            private readonly PhotoStorage _photoStorage;
 
-            private readonly IOptions<CloudinarySettings> _cloudinaryConfig;
-            public PhotosController(IDatingRepository repo, IMapper mapper, 
-            IOptions<CloudinarySettings> cloudinaryConfig )
+            public PhotosController(IDatingRepository repo, IMapper mapper,
+            PhotoStorage photoStorage)
             {
-                _cloudinaryConfig = cloudinaryConfig;
                 _mapper = mapper;
                 _repo = repo;
-
-                Account acc = new Account(
-                    _cloudinaryConfig.Value.CloudName,
-                    _cloudinaryConfig.Value.ApiKey,
-                    _cloudinaryConfig.Value.ApiSecret
-                    );
-                    
-
-
-
-                    _cloudinary= new Cloudinary(acc);
+                _photoStorage = photoStorage;
             }
 
             [HttpGet("{id}", Name = "GetPhoto")]
@@ -67,19 +52,13 @@ namespace DatingApp.api.Controllers
 
             var file = photoForCreationDto.File;
 
-            var uploadResult = new ImageUploadResult();
+            var uploadResult = new PhotoUploadResult();
 
             if (file.Length > 0)
             {
                 using (var stream = file.OpenReadStream())
                 {
-                    var uploadParams = new ImageUploadParams()
-                    {
-                        File = new FileDescription(file.Name, stream),
-                        Transformation = new Transformation().Width(500).Height(500).Crop("fill").Gravity("face")
-                    };
-
-                    uploadResult = _cloudinary.Upload(uploadParams);
+                    uploadResult = _photoStorage.Upload(stream, $"{Request.Scheme}://{Request.Host}");
                 }
             }
 
@@ -148,9 +127,7 @@ namespace DatingApp.api.Controllers
                 return BadRequest("You cannot delete your main photo");
 
                 if (photoFromRepo.PublicId != null){
-var deleteParams = new DeletionParams(photoFromRepo.PublicId);
-
-                var result= _cloudinary.Destroy(deleteParams);
+                var result= _photoStorage.Destroy(photoFromRepo.PublicId);
 
                 if (result.Result == "ok") {
                     _repo.Delete(photoFromRepo);

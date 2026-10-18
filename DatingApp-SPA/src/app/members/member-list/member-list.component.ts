@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { User } from '../../_models/user';
 import {UserService } from '../../_services/user.service';
 import { AlertifyService } from '../../_services/alertify.service';
@@ -8,7 +8,9 @@ import { Pagination, PaginatedResult } from 'src/app/_models/pagination';
 @Component({
   selector: 'app-member-list',
   templateUrl: './member-list.component.html',
-  styleUrls: ['./member-list.component.css']
+  styleUrls: ['./member-list.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false
 })
 export class MemberListComponent implements OnInit {
 users: User[];

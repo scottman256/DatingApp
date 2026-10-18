@@ -5,3 +5,7 @@
 @import '../node_modules/alertifyjs/build/css/alertify.min.css';
 @import '../node_modules/alertifyjs/build/css/themes/bootstrap.min.css';
 @import '../node_modules/ngx-bootstrap/datepicker/bs-datepicker.css';
+
+/* Gallery thumbnail borders as drawn by @kolkov/ngx-gallery (two nested 1px borders), which ngx-gallery-15 does not include */
+.ngx-gallery-thumbnails .ngx-gallery-thumbnail { border: 2px solid #000; }
+.ngx-gallery-thumbnails .ngx-gallery-thumbnail.ngx-gallery-active { border: 2px solid #cc4548; }

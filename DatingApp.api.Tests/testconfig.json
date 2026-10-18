@@ -1,0 +1,11 @@
+{
+  "platformOptions": {
+    "Coverlet": {
+      "include": "[DatingApp.api]*",
+      "excludeByAttribute": "ExcludeFromCodeCoverage,ExcludeFromCodeCoverageAttribute,GeneratedCodeAttribute,CompilerGeneratedAttribute",
+      "format": "cobertura",
+      "threshold": 80,
+      "thresholdType": "line,branch,method"
+    }
+  }
+}
