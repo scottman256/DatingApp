@@ -2,16 +2,18 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/spec",
+    "typeRoots": ["node_modules/@types", "node_modules"],
     "types": [
       "node",
       "vitest/globals"
     ]
   },
+  "files": [
+    "src/polyfills.ts",
+    "src/test-setup.ts"
+  ],
   "include": [
     "src/**/*.spec.ts",
     "src/**/*.d.ts"
-  ],
-  "angularCompilerOptions": {
-    "strictTemplates": false
-  }
+  ]
 }

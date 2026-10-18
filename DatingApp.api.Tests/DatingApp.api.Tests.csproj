@@ -19,6 +19,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <!-- Seed.SeedUsers reads Data/UserSeedData.json relative to the working directory. -->
+    <None Include="..\DatingApp.api\Data\UserSeedData.json" Link="Data\UserSeedData.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Using Include="Xunit" />
   </ItemGroup>
 

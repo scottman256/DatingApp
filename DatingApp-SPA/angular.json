@@ -14,16 +14,14 @@
           "builder": "@angular/build:application",
           "options": {
             "outputPath": {
-              "base": "dist/DatingApp-SPA",
+              "base": "../DatingApp.API/wwwroot",
               "browser": ""
             },
             "index": "src/index.html",
-            "browser": "src/main.ts",
             "polyfills": [
               "src/polyfills.ts"
             ],
             "tsConfig": "tsconfig.app.json",
-            "aot": true,
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -31,7 +29,12 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "extractLicenses": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true,
+            "browser": "src/main.ts"
           },
           "configurations": {
             "production": {
@@ -59,35 +62,22 @@
                 }
               ]
             },
-            "development": {
-              "optimization": false,
-              "extractLicenses": false,
-              "sourceMap": true,
-              "namedChunks": true
-            },
             "testing": {
               "aot": false,
-              "optimization": false,
-              "extractLicenses": false,
-              "polyfills": [
-                "zone.js",
-                "zone.js/testing"
-              ]
+              "polyfills": ["zone.js"]
             }
-          },
-          "defaultConfiguration": "development"
+          }
         },
         "serve": {
           "builder": "@angular/build:dev-server",
+          "options": {
+            "buildTarget": "DatingApp-SPA:build"
+          },
           "configurations": {
             "production": {
               "buildTarget": "DatingApp-SPA:build:production"
-            },
-            "development": {
-              "buildTarget": "DatingApp-SPA:build:development"
             }
-          },
-          "defaultConfiguration": "development"
+          }
         },
         "extract-i18n": {
           "builder": "@angular/build:extract-i18n",
@@ -102,23 +92,46 @@
             "reporters": [
               "default"
             ],
-            "coverageReporters": [
-              "html",
-              "lcovonly",
-              "text-summary"
-            ],
+            "buildTarget": ":build:testing",
+            "setupFiles": ["src/test-setup.ts"],
+            "runner": "vitest",
+            "coverageExclude": ["src/app/_testing/**"],
+            "coverageReporters": ["html", "lcovonly", "text-summary"],
             "coverageThresholds": {
               "statements": 80,
               "branches": 80,
               "functions": 80,
-              "lines": 80,
-              "perFile": false
-            },
-            "buildTarget": ":build:testing",
-            "runner": "vitest"
+              "lines": 80
+            }
           }
         }
       }
+    }
+  },
+  "schematics": {
+    "@schematics/angular:component": {
+      "type": "component"
+    },
+    "@schematics/angular:directive": {
+      "type": "directive"
+    },
+    "@schematics/angular:service": {
+      "type": "service"
+    },
+    "@schematics/angular:guard": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:interceptor": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:module": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:pipe": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:resolver": {
+      "typeSeparator": "."
     }
   },
   "cli": {

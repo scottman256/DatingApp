@@ -1,51 +1,54 @@
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { provideHttpClient } from '@angular/common/http';
-import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
-
 import { AppComponent } from './app.component';
-import { ValueComponent } from './value/value.component';
+import { AuthService } from './_services/auth.service';
+import { tokenGetter } from './app.module';
+import { aUser, fakeToken } from './_testing/test-helpers';
 
 describe('AppComponent', () => {
-  let httpMock: HttpTestingController;
+  let auth: { decodedToken: any; currentUser: any; changeMemberPhoto: ReturnType<typeof vi.fn> };
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [
-        AppComponent,
-        ValueComponent
-      ],
-      providers: [ provideHttpClient(), provideHttpClientTesting() ]
-    }).compileComponents();
-
-    httpMock = TestBed.inject(HttpTestingController);
+  beforeEach(() => {
+    localStorage.clear();
+    auth = { decodedToken: undefined, currentUser: undefined, changeMemberPhoto: vi.fn() };
+    TestBed.configureTestingModule({
+      declarations: [AppComponent],
+      providers: [{ provide: AuthService, useValue: auth }],
+      schemas: [NO_ERRORS_SCHEMA]
+    });
   });
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
-
-  it(`should have as title 'app'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('app');
-  });
-
-  it('should render the Dating App heading', () => {
+  it('renders the nav bar and the routed page', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
-    httpMock.expectOne('http://localhost:5000/api/values').flush([]);
 
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('h1').textContent.trim()).toBe('Dating App');
+    expect(fixture.componentInstance.title).toBe('app');
+    expect(fixture.nativeElement.querySelector('app-nav')).toBeTruthy();
+    expect(fixture.nativeElement.querySelector('router-outlet')).toBeTruthy();
   });
 
-  it('should render the values list', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    httpMock.expectOne('http://localhost:5000/api/values').flush([]);
+  it('restores the logged-in user from local storage', () => {
+    const user = aUser({ photoUrl: 'me.jpg' });
+    localStorage.setItem('token', fakeToken({ unique_name: 'ines' }));
+    localStorage.setItem('user', JSON.stringify(user));
 
-    expect(fixture.nativeElement.querySelector('app-value')).toBeTruthy();
+    TestBed.createComponent(AppComponent).detectChanges();
+
+    expect(auth.decodedToken.unique_name).toBe('ines');
+    expect(auth.currentUser.knownAs).toBe('Ines');
+    expect(auth.changeMemberPhoto).toHaveBeenCalledWith('me.jpg');
+  });
+
+  it('leaves the user logged out when nothing is stored', () => {
+    TestBed.createComponent(AppComponent).detectChanges();
+
+    expect(auth.decodedToken).toBeUndefined();
+    expect(auth.changeMemberPhoto).not.toHaveBeenCalled();
+  });
+
+  it('reads the token for API requests from local storage', () => {
+    localStorage.setItem('token', 'abc');
+
+    expect(tokenGetter()).toBe('abc');
   });
 });

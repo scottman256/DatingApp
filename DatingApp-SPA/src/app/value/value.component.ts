@@ -3,10 +3,10 @@ import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-value',
-  standalone: false,
   templateUrl: './value.component.html',
+  styleUrls: ['./value.component.css'],
   changeDetection: ChangeDetectionStrategy.Eager,
-  styleUrls: ['./value.component.css']
+  standalone: false
 })
 export class ValueComponent implements OnInit {
 values: any;

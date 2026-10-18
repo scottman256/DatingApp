@@ -1,26 +1,23 @@
 # DatingAppSPA
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.1 and has since been upgraded to Angular 22.
-
-See the [README in the repository root](../README.md) for how to run the whole app (API + SPA) locally.
+The Angular front end of the DatingApp. This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.1
+and upgraded to Angular 22 in 2026. See the [README in the repository root](../README.md) for how to run the whole app.
 
 ## Development server
 
-Run `npm start` (or `ng serve`) for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-The app loads its data from the API at `http://localhost:5000`, so start the API first.
+Start the API first (see the root README), then run `npm start` for a dev server. Navigate to `http://localhost:4200/`.
+The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Run `npx ng generate component component-name` to generate a new component. You can also use `npx ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use `ng build --configuration production` for a production build.
+Run `npm run build -- --configuration production` to build the project for production. The build artifacts are written to `../DatingApp.api/wwwroot`,
+so the API serves the app at `http://localhost:5000`.
 
 ## Running unit tests
 
-Run `npm test` (or `ng test`) to execute the unit tests via [Vitest](https://vitest.dev). Run `npm run test:ci` to run them once with a code coverage report; it fails if coverage drops below 80%.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Run `npm test` to execute the unit tests via [Vitest](https://vitest.dev) and re-run them when a file changes.
+Run `npm run test:ci` to run them once with a code coverage report (at least 80% is required).
