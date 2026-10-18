@@ -52,10 +52,11 @@ namespace DatingApp.api
         {
             services.AddDbContext<DataContext>(x => {
                 x.UseLazyLoadingProxies();
-                x.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+                x.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
+                    o => o.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery));
 
                 });
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+            services.AddMvc();
             services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.AddCors();
             services.AddSingleton<PhotoStorage>();
