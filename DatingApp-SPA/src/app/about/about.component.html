@@ -1,0 +1,47 @@
+<div class="container mt-5">
+  <div class="text-center">
+    <h1>Meet people you'll actually click with</h1>
+    <p class="lead">
+      Dating App brings together real profiles, smart filters and private messaging,
+      so you spend less time searching and more time getting to know someone special.
+    </p>
+  </div>
+
+  <div class="row mt-5">
+    <div class="col-md-6 col-lg-4 mb-4" *ngFor="let feature of features">
+      <div class="card h-100 text-center">
+        <div class="card-body">
+          <div class="feature-icon mb-3">
+            <i class="fa fa-2x" [ngClass]="feature.icon"></i>
+          </div>
+          <h4 class="card-title">{{feature.title}}</h4>
+          <p class="card-text">{{feature.text}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="text-center mt-4">How it works</h2>
+  <div class="row mt-4 text-center">
+    <div class="col-md-4 mb-4" *ngFor="let step of steps; let i = index">
+      <div class="step-number mb-3">{{i + 1}}</div>
+      <h4>{{step.title}}</h4>
+      <p>{{step.text}}</p>
+    </div>
+  </div>
+
+  <div class="card bg-light text-center mb-5">
+    <div class="card-body py-5">
+      <h2>Your match could be one hello away</h2>
+      <div *ngIf="!loggedIn()">
+        <p class="lead">Joining is free and takes less than a minute.</p>
+        <button class="btn btn-primary btn-lg mr-2 my-1" [routerLink]="['/home']" [queryParams]="{register: true}">Register now</button>
+        <button class="btn btn-info btn-lg my-1" [routerLink]="['/home']">Back to home</button>
+      </div>
+      <div *ngIf="loggedIn()">
+        <p class="lead">Your next conversation is waiting.</p>
+        <button class="btn btn-primary btn-lg" [routerLink]="['/members']">See your matches</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -13,6 +13,7 @@ import {JwtModule } from '@auth0/angular-jwt';
 
 import { AuthService } from './_services/auth.service';
 import { HomeComponent } from './home/home.component';
+import { AboutComponent } from './about/about.component';
 import { RegisterComponent } from './register/register.component';
 import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { MemberListComponent } from './members/member-list/member-list.component';
@@ -59,6 +60,7 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       AppComponent,
       NavComponent,
       HomeComponent,
+      AboutComponent,
       RegisterComponent,
       MemberListComponent,
       ListsComponent,
