@@ -31,9 +31,9 @@
     <button type="submit" class="btn btn-primary" style="margin-left:10px">Apply Filters</button>
     <button type="button" class="btn btn-info" (click)="resetFilters()" style="margin-left:10px">Reset Filter</button>
 
-    <div class="col">
-      <div class="btn-group float-right">
-        <button type="button" name="orderBy" class="btn btn-primary" 
+    <div class="col mt-2 mt-lg-0">
+      <div class="float-right">
+        <button type="button" name="orderBy" class="btn btn-primary mr-2"
         [(ngModel)] = "userParams.orderBy" (click)=" sortByLastActive()" >Last Active</button>
         <button type="button" name="orderBy" (click)=" sortByCreated()" class="btn btn-primary" 
         [(ngModel)] = "userParams.orderBy" >Newest Members</button>

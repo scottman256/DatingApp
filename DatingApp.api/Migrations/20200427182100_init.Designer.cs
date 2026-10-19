@@ -11,7 +11,7 @@ namespace DatingApp.api.Migrations
 {
     [DbContext(typeof(DataContext))]
     [Migration("20200427182100_init")]
-    partial class init
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -9,9 +9,9 @@ namespace DatingApp.api.Helpers
     {
         public static void AddApplicationError(this HttpResponse response, string message) 
         {
-            response.Headers.Add("Application-Error", message);
-            response.Headers.Add("Access-Control-Expose-Headers", "Application-Error");
-            response.Headers.Add("Access-Control-Allow-Origin","*");
+            response.Headers.Append("Application-Error", message);
+            response.Headers.Append("Access-Control-Expose-Headers", "Application-Error");
+            response.Headers.Append("Access-Control-Allow-Origin","*");
         }
 
         public static void AddPagination(this HttpResponse response, int currentPage, 
@@ -20,8 +20,8 @@ namespace DatingApp.api.Helpers
     var paginationHeader = new PaginationHeader(currentPage, itemsPerPage, totalItems, totalPages);
    var  camelCaseFormatter = new JsonSerializerSettings();
    camelCaseFormatter.ContractResolver = new CamelCasePropertyNamesContractResolver();
-    response.Headers.Add("Pagination", JsonConvert.SerializeObject(paginationHeader, camelCaseFormatter));
-    response.Headers.Add("Access-Control-Expose-Headers","Pagination");
+    response.Headers.Append("Pagination", JsonConvert.SerializeObject(paginationHeader, camelCaseFormatter));
+    response.Headers.Append("Access-Control-Expose-Headers","Pagination");
 }
         public static int CalculateAge(this DateTime theDateTime)
         {

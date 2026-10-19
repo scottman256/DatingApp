@@ -1,5 +1,6 @@
 import {Routes} from '@angular/router';
 import { HomeComponent } from './home/home.component';
+import { AboutComponent } from './about/about.component';
 import { MemberListComponent } from './members/member-list/member-list.component';
 import { MessagesComponent } from './messages/messages.component';
 import { ListsComponent } from './lists/lists.component';
@@ -15,6 +16,7 @@ import { MessagesResolver } from './_resolvers/messages.resolver';
 
 export const appRoutes: Routes = [
 { path: 'home', component: HomeComponent},
+{ path: 'about', component: AboutComponent},
 {path: '',
 runGuardsAndResolvers: 'always',
 canActivate: [AuthGuard],
